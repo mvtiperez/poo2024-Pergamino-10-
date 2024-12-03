@@ -1,0 +1,150 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #212121; /* Fondo general */
+}
+#form-ui{
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100%; /* Ocupa toda la altura */
+    width: 100%; /* Ocupa todo el ancho */
+    background-color: #212121;
+}
+#form {
+    display: flex; /* Usamos flexbox */
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    height: 50vh; /* Hace que ocupe toda la altura de la pantalla */
+    width: 100vw; /* Hace que ocupe todo el ancho de la pantalla */
+    max-width: 400px; /* Limita el ancho máximo */
+    margin: 10% auto; /* Centrado horizontal */
+    background-color: #161616; /* Fondo */
+    box-shadow: 0px 15px 60px rgba(0, 255, 127, 0.8); /* Sombra */
+    outline: 1px solid rgba(43, 153, 98, 0.8);
+    border-radius: 10px;
+}
+
+#form-body {
+    width: 100%;
+    max-width: 230px;
+    margin: 0 auto; /* Centrado horizontal */
+}
+
+/* Otros estilos */
+#welcome-lines {
+    text-align: center;
+    line-height: 1.2; /* Aumenta la separación */
+}
+
+#welcome-line-1 {
+    color: #00FF7F;
+    font-weight: 600;
+    font-size: 36px;
+}
+
+#welcome-line-2 {
+    color: #ffffff;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+/* Input Area */
+#input-area {
+    margin-top: 30px;
+}
+
+/* Estilo de los inputs */
+.form-inp {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px; /* Ajusta el espacio interno */
+    background: transparent;
+    border: 1px solid #e3e3e3;
+    line-height: 1.4;
+    border-radius: 8px;
+    margin-bottom: 15px; /* Espaciado entre inputs */
+}
+
+.form-inp input {
+    flex: 1;
+    background: none;
+    font-size: 14px;
+    color: #00FF7F;
+    border: none;
+    outline: none;
+}
+
+.form-inp:focus-within {
+    border: 1px solid #00FF7F; /* Cambia el borde cuando está enfocado */
+}
+
+/* Submit Button */
+#submit-button-cvr {
+    margin-top: 20px;
+}
+
+#submit-button {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background-color: transparent;
+    color: #00FF7F;
+    font-weight: bold;
+    font-size: 14px;
+    border: 1px solid #00FF7F;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+#submit-button:hover {
+    background-color: #00FF7F;
+    color: #161616;
+}
+
+/* Forgot Password Link */
+#forgot-pass {
+    text-align: center;
+    margin-top: 10px;
+}
+
+#forgot-pass a {
+    color: #868686;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+#forgot-pass a:hover {
+    color: #00FF7F;
+}
+
+/* Decorative Bar */
+#bar {
+    position: relative;
+    display: block;
+    width: 28px;
+    height: 8px;
+    margin: 20px auto 0;
+    background-color: #00FF7F;
+    border-radius: 10px;
+}
+
+#bar:before,
+#bar:after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: #ececec;
+    border-radius: 50%;
+}
+
+#bar:before {
+    right: -20px;
+}
+
+#bar:after {
+    right: -38px;
+}
