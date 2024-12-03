@@ -1,7 +1,8 @@
 package com.example.demo.controller;
+
+import com.example.demo.DTO.SongRequestDto;
 import com.example.demo.DTO.SongResponseDTO;
 import com.example.demo.entities.MusicArtistUser;
-import com.example.demo.DTO.SongRequestDto;
 import com.example.demo.services.SongService;
 import com.example.demo.services.UserService;
 import com.example.demo.util.JwtTokenUtil;

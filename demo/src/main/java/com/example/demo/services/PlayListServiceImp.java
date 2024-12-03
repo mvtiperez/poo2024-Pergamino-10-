@@ -1,4 +1,5 @@
 package com.example.demo.services;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
@@ -17,13 +18,13 @@ import com.example.demo.exceptions.ResourceNotFoundException;
 
 @Service
 public class PlayListServiceImp implements PlayListService {
-    
+
     @Autowired
     private PlayListRepository playlistRepository;
 
     @Autowired
     private SongRepository songRepository;
-    
+
     @Autowired
     private ModelMapper modelMapper;
 
@@ -48,9 +49,11 @@ public class PlayListServiceImp implements PlayListService {
         return modelMapper.map(playlist, PlaylistResponseDTO.class);
     }
 
-    
-
     @Override
+    // implementa el método updatePlaylistName
+    // este método actualiza el nombre de una lista de reproducción
+    // lanza una excepción ResourceNotFoundException si la lista de reproducción no
+    // existe
     public void updatePlaylistName(Long playlistId, User owner, String playlistName) {
         PlayList playlistToUpdate = playlistRepository.findById(playlistId)
                 .orElseThrow(() -> new ResourceNotFoundException("Playlist not found"));
@@ -62,6 +65,12 @@ public class PlayListServiceImp implements PlayListService {
     }
 
     @Override
+    // implementa el método deletePlaylist
+    // este método elimina una lista de reproducción
+    // lanza una excepción ResourceNotFoundException si la lista de reproducción no
+    // existe
+    // lanza una excepción ResourceNotFoundException si el usuario no es el dueño de
+    // la lista de reproducción
     public void deletePlaylist(Long playlistId, User owner) {
         PlayList playlistToDelete = playlistRepository.findById(playlistId)
                 .orElseThrow(() -> new ResourceNotFoundException("Playlist not found"));
@@ -75,11 +84,16 @@ public class PlayListServiceImp implements PlayListService {
     }
 
     @Override
+    // implementa el método addSongToPlaylist
+    // este método agrega una canción a una lista de reproducción
+    // lanza una excepción ResourceNotFoundException si la lista de reproducción no
+    // existe
     public void addSongToPlaylist(Long playlistId, User owner, Long songId) {
         PlayList playlist = playlistRepository.findById(playlistId)
                 .orElseThrow(() -> new ResourceNotFoundException("Playlist not found"));
-        if (!playlist.getOwner().getId().equals(owner.getId())){
-            throw new ResourceNotFoundException("No es el dueño de la playlist");}
+        if (!playlist.getOwner().getId().equals(owner.getId())) {
+            throw new ResourceNotFoundException("No es el dueño de la playlist");
+        }
         Song song = songRepository.findById(songId)
                 .orElseThrow(() -> new ResourceNotFoundException("Song not found"));
         playlist.getSongs().add(song);
@@ -87,6 +101,9 @@ public class PlayListServiceImp implements PlayListService {
     }
 
     @Override
+    // implementa el método getMyPlaylists
+    // Este método debe devolver una lista de PlaylistResponseDTO con las listas de
+    // reproducción del usuario
     public List<PlaylistResponseDTO> getMyPlaylists(User owner) {
         List<PlayList> playlists = playlistRepository.findByOwner_id(owner.getId());
         return playlists.stream()

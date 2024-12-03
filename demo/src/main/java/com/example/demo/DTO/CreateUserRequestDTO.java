@@ -8,6 +8,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+// Clase que representa el objeto que se recibe en el body de la petición de creación de usuario
 public class CreateUserRequestDTO {
     private String username;
     private String password;

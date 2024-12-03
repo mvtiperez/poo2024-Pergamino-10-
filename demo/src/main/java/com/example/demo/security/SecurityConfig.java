@@ -10,6 +10,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 
+// 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -18,12 +19,13 @@ public class SecurityConfig {
     private JwtFilter jwtFilter;
 
     @Bean
+    // Esta clase se configura la seguridad de la aplicación
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable()))
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> {
                     // auth.requestMatchers("/h2-console/**").permitAll();
-                    
+
                     auth.requestMatchers(HttpMethod.POST, "/api/auth/**").permitAll();
                     auth.requestMatchers(HttpMethod.POST, "/api/artist/**").permitAll();
                     auth.requestMatchers(HttpMethod.POST, "/api/enthusiast**").permitAll();

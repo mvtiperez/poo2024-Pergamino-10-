@@ -1,4 +1,5 @@
 package com.example.demo.services;
+
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entities.User;
@@ -15,6 +16,7 @@ public class AuthorizationServiceImp implements AuthorizationService {
     private UserService userService;
 
     @Override
+    // implementar el método authorize
     public User authorize(String token) throws Exception {
         if (!jwtTokenUtil.validateToken(token)) {
             throw new Exception("Invalid token");
@@ -28,12 +30,11 @@ public class AuthorizationServiceImp implements AuthorizationService {
     }
 
     @Override
+    // implementa el método verify
     public void verify(String token) {
         if (!jwtTokenUtil.validateToken(token)) {
             throw new RuntimeException("Invalid token");
         }
     }
 
-    
 }
-

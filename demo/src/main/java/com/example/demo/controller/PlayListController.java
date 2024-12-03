@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.example.demo.DTO.AddSongDTO;
 import com.example.demo.DTO.CreateAndUpdatePlaylistRequestDTO;
 import com.example.demo.DTO.PlaylistResponseDTO;
@@ -55,7 +56,7 @@ public class PlayListController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getPlaylist(@RequestHeader("Authorization") String tokenJWT,@PathVariable Long id) {
+    public ResponseEntity<?> getPlaylist(@RequestHeader("Authorization") String tokenJWT, @PathVariable Long id) {
         try {
             String token = tokenJWT.replace("Bearer ", "");
             authorizationService.verify(token);
@@ -67,10 +68,10 @@ public class PlayListController {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
-    
 
     @PostMapping("/playlist")
-    public ResponseEntity<?> createPlaylist(@RequestHeader("Authorization") String tokenJWT, @RequestBody CreateAndUpdatePlaylistRequestDTO createPlaylistRequestDTO) {
+    public ResponseEntity<?> createPlaylist(@RequestHeader("Authorization") String tokenJWT,
+            @RequestBody CreateAndUpdatePlaylistRequestDTO createPlaylistRequestDTO) {
         try {
             String token = tokenJWT.replace("Bearer ", "");
             authorizationService.verify(token);
@@ -86,7 +87,8 @@ public class PlayListController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updatePlaylistName(@RequestHeader("Authorization") String tokenJWT, @PathVariable Long id, @RequestBody CreateAndUpdatePlaylistRequestDTO updatePlaylistRequestDTO) {
+    public ResponseEntity<?> updatePlaylistName(@RequestHeader("Authorization") String tokenJWT, @PathVariable Long id,
+            @RequestBody CreateAndUpdatePlaylistRequestDTO updatePlaylistRequestDTO) {
         try {
             String token = tokenJWT.replace("Bearer ", "");
             authorizationService.verify(token);
@@ -118,14 +120,15 @@ public class PlayListController {
     }
 
     @PostMapping("/{id}/song")
-    public ResponseEntity<?> addSongToPlaylist(@RequestHeader("Authorization") String tokenJWT, @PathVariable Long id, @RequestBody AddSongDTO addSongDTO) {
+    public ResponseEntity<?> addSongToPlaylist(@RequestHeader("Authorization") String tokenJWT, @PathVariable Long id,
+            @RequestBody AddSongDTO addSongDTO) {
         try {
             String token = tokenJWT.replace("Bearer ", "");
             authorizationService.verify(token);
             Long userId = Long.parseLong(jwtTokenUtil.getSubject(token));
             User owner = userService.findById(userId);
             playlistService.addSongToPlaylist(id, owner, addSongDTO.getSongID());
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }

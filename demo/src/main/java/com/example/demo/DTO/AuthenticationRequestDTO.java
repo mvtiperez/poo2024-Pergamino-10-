@@ -9,6 +9,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+// Clase que representa el objeto que se recibe en el body de la petición de
+// autenticación
 public class AuthenticationRequestDTO {
 
     private String username;
