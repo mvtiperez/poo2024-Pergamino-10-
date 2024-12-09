@@ -1,107 +1,63 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
-import "./Registro.css"; // Asegúrate de que la ruta es correcta
+import { useNavigate } from "react-router-dom";
+import "./Registro.css";
 
 function Registro() {
-  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [userType, setUserType] = useState("artist"); // Valor por defecto: "artist"
+  const [userType, setUserType] = useState("artist");
   const [message, setMessage] = useState("");
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Hook para redirigir
 
   const handleRegistro = async (e) => {
-    e.preventDefault();
-    setMessage("");
-
-    // Validar que las contraseñas coincidan
-    if (password !== confirmPassword) {
-      setMessage("Las contraseñas no coinciden");
-      return;
-    }
-
-    // Configurar el endpoint según el tipo de usuario
-    const endpoint =
-      userType === "artist"
-        ? "http://localhost:8080/api/artist"
-        : "http://localhost:8080/api/enthusiast";
+    e.preventDefault(); // Evitar recarga de página
+    setMessage(""); // Limpiar mensajes previos
 
     try {
-      // Hacer la solicitud POST con fetch
-      const response = await fetch(endpoint, {
+      const response = await fetch(`http://localhost:8080/api/${userType}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          name,
-          password,
-        }),
+        body: JSON.stringify({ username, password }), // Enviar datos
       });
 
-      // Comprobar el código de estado de la respuesta
-      if (response.status === 201) {
-        setMessage("Usuario registrado exitosamente");
-        // Redirigir a la página de inicio de sesión o cualquier otra página
-        navigate("/login"); // Si tienes un endpoint de login
-      } else if (response.status === 409) {
-        setMessage("Error: El usuario ya existe.");
+      if (response.ok) {
+        setMessage("Registro exitoso");
+        navigate("/login");
       } else {
-        setMessage("Error desconocido. Inténtalo nuevamente.");
+        setMessage("Error en el registro. Inténtalo de nuevo.");
       }
-    } catch (error) {
-      setMessage("Error de conexión. Inténtalo más tarde.");
+    } catch (err) {
+      console.error("Error al registrar:", err);
+      setMessage("Hubo un problema con el servidor. Inténtalo más tarde.");
     }
   };
 
   return (
     <div id="form-ui">
-      <form id="form" className="Registro-form" onSubmit={handleRegistro}>
+      <form id="form" onSubmit={handleRegistro}>
         <div id="form-body">
-          {/* Título de Bienvenida */}
           <div id="welcome-lines">
-            <h1 id="welcome-line-1">Bienvenido</h1>
-            <p id="welcome-line-2">Regístrate para comenzar</p>
+            <div id="welcome-line-1">AllMusic</div>
           </div>
-
-          {/* Nombre */}
           <div id="input-area">
             <div className="form-inp">
               <input
+                placeholder="Usuario"
                 type="text"
-                id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-                placeholder="Ingresa tu nombre"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)} // Capturar valor
               />
             </div>
-
-            {/* Contraseña */}
             <div className="form-inp">
               <input
+                placeholder="Contraseña"
                 type="password"
-                id="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                placeholder="Ingresa tu contraseña"
+                onChange={(e) => setPassword(e.target.value)} // Capturar valor
               />
             </div>
-
-            {/* Confirmar Contraseña */}
-            <div className="form-inp">
-              <input
-                type="password"
-                id="confirmPassword"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                required
-                placeholder="Confirma tu contraseña"
-              />
-            </div>
-
-            {/* Tipo de Usuario */}
             <div className="form-inp">
               <select
                 id="userType"

@@ -1,49 +1,36 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import './Login.css';
+import { login } from "../services/authService";
+import "./Login.css";
 
-function Login() {
-  const [usuario, setUsuario] = useState("");
-  const [contrasena, setContrasena] = useState("");
-  const [error, setError] = useState("");
-  const navigate = useNavigate(); // Hook para redirigir
+const Login = () => {
+  const [credentials, setCredentials] = useState({
+    username: "",
+    password: "",
+  });
+  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault(); // Evitar recarga de página
-    setError(""); // Limpiar errores previos
-
-    try {
-      const response = await fetch("http://localhost:8080/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username: usuario, password: contrasena }), // Enviar datos
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        const token = data.token;
-
-        // Guardar token en almacenamiento local o sesión
-        localStorage.setItem("authToken", token);
-
-        // Redireccionar o mostrar éxito
-        alert("Inicio de sesión exitoso");
-        navigate('/menuPrincipal');
-        console.log("Token:", token);
-      } else {
-        setError("Credenciales inválidas. Inténtalo de nuevo.");
-      }
-    } catch (err) {
-      console.error("Error al autenticar:", err);
-      setError("Hubo un problema con el servidor. Inténtalo más tarde.");
-    }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setCredentials({ ...credentials, [name]: value });
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const data = await login(credentials);
+      setMessage("Login successful");
+      // Guardar el token en el almacenamiento local o en el estado de la aplicación
+      // Redirigir al usuario a la página de inicio o panel de control
+      navigate("/MenuPrincipal"); // Cambia '/dashboard' por la ruta que desees
+    } catch (error) {
+      setMessage("Invalid credentials");
+    }
+  };
   // Función para redirigir a la página de registro
   const goToRegistro = () => {
-    navigate("/registrar");  // Redirige a la ruta de registro
+    navigate("/registrar"); // Redirige a la ruta de registro
   };
 
   return (
@@ -58,26 +45,39 @@ function Login() {
               <input
                 placeholder="Usuario"
                 type="text"
-                value={usuario}
-                onChange={(e) => setUsuario(e.target.value)} // Capturar valor
+                name="username"
+                value={credentials.username}
+                onChange={handleChange} // Capturar valor
               />
             </div>
             <div className="form-inp">
               <input
                 placeholder="Contraseña"
                 type="password"
-                value={contrasena}
-                onChange={(e) => setContrasena(e.target.value)} // Capturar valor
+                name="password"
+                value={credentials.password}
+                onChange={handleChange} // Capturar valor
               />
             </div>
+            <div id="submit-button-cvr">
+              <button id="submit-button" type="submit">
+                Iniciar sesión
+              </button>
+            </div>
           </div>
-          <div id="submit-button-cvr">
-            <button id="submit-button" type="submit">Iniciar sesión</button>
-          </div>
-          {error && <p style={{ color: "red", textAlign: "center" }}>{error}</p>}
+          {message && <p>{message}</p>}
           <div id="forgot-pass">
-            {/* Cambié el <a> por un botón que usa el hook navigate */}
-            <button type="button" onClick={goToRegistro} style={{ background: "none", border: "none", color: "#007bff", textDecoration: "underline", cursor: "pointer" }}>
+            <button
+              type="button"
+              onClick={goToRegistro}
+              style={{
+                background: "none",
+                border: "none",
+                color: "#007bff",
+                textDecoration: "underline",
+                cursor: "pointer",
+              }}
+            >
               Registrarse
             </button>
           </div>
@@ -85,8 +85,6 @@ function Login() {
       </form>
     </div>
   );
-}
+};
 
 export default Login;
-
-

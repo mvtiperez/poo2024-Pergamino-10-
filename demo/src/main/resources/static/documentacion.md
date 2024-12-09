@@ -14,7 +14,6 @@
 http://localhost:8080/api/johndoe
 
 
-
 2. **Eliminar usuario por nombre de usuario**
    - **Método:** DELETE
    - **URL:** `/api/{username}`

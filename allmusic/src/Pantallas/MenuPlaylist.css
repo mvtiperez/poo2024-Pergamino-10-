@@ -1,171 +1,172 @@
 /* Estilo global */
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    background-color: #212121; /* Fondo general */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #212121; /* Fondo general */
 }
 
 .top-bar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    background-color: #212121;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #212121;
 }
 
 .container {
-    display: flex;
-    justify-content: space-between; /* Asegura que aside y main-container tengan espacio */
-    width: 100%;
-    max-width: 1200px; /* Limitar ancho máximo */
-    gap: 20px; /* Espacio entre aside y main-container */
+  display: flex;
+  justify-content: space-between; /* Asegura que aside y main-container tengan espacio */
+  width: 100%;
+  max-width: 1200px; /* Limitar ancho máximo */
+  gap: 20px; /* Espacio entre aside y main-container */
 }
 
 aside {
-    width: 300px;
-    background-color: #161616; /* Fondo del sidebar */
-    box-shadow: 0px 15px 60px rgba(0, 255, 127, 0.8); /* Sombra */
-    border-radius: 10px;
-    padding: 20px;
-    height: 100vh; /* Toma todo el alto de la ventana */
+  width: 300px;
+  background-color: #161616; /* Fondo del sidebar */
+  box-shadow: 0px 15px 60px rgba(0, 255, 127, 0.8); /* Sombra */
+  border-radius: 10px;
+  padding: 20px;
+  height: 100vh; /* Toma todo el alto de la ventana */
 }
 
 .toggle h2 {
-    color: #00FF7F;
-    font-size: 32px;
-    text-align: center;
-    margin-bottom: 30px;
+  color: #00ff7f;
+  font-size: 32px;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .sidebar {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
 }
 
 .sidebar a {
-    display: flex;
-    align-items: center;
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-    padding: 10px;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
 }
 
 .sidebar a:hover {
-    background-color: #68fcb2;
+  background-color: #68fcb2;
 }
 
 .sidebar a span.material-icons {
-    margin-right: 15px;
-    color: #00FF7F;
+  margin-right: 15px;
+  color: #00ff7f;
 }
 
 .active {
-    background-color: #00FF7F; /* Fondo de enlace activo */
+  background-color: #00ff7f; /* Fondo de enlace activo */
 }
 
 .active h3 {
-    color: #161616; /* Cambiar el texto a oscuro cuando está activo */
+  color: #161616; /* Cambiar el texto a oscuro cuando está activo */
 }
 
 .main-container {
-    flex-grow: 1; /* Toma todo el espacio restante */
-    background-color: #161616; /* Fondo */
-    box-shadow: 0px 15px 60px rgba(0, 255, 127, 0.8); /* Sombra */
-    border-radius: 10px;
-    padding: 20px;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
+  flex-grow: 1; /* Toma todo el espacio restante */
+  background-color: #161616; /* Fondo */
+  box-shadow: 0px 15px 60px rgba(0, 255, 127, 0.8); /* Sombra */
+  border-radius: 10px;
+  padding: 20px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
 }
 
 .main-container h2 {
-    color: #00FF7F;
-    text-align: center;
-    margin-bottom: 20px;
+  color: #00ff7f;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 /* Botones en el contenedor principal */
 .button-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  width: 100%;
 }
 
 .button-container button {
-    background-color: #00FF7F;
-    color: #161616;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 15px;
-    border: none;
-    border-radius: 10px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    cursor: pointer;
+  background-color: #00ff7f;
+  color: #161616;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
 }
 
 .button-container button:hover {
-    background-color: #68fcb2;
-    transform: scale(1.05);
+  background-color: #68fcb2;
+  transform: scale(1.05);
 }
 
 .button-container button:active {
-    transform: scale(0.95);
+  transform: scale(0.95);
 }
 
 /* Responsive: Hacer que todo se ajuste en pantallas pequeñas */
 @media screen and (max-width: 768px) {
-    .container {
-        flex-direction: column;
-        gap: 20px;
-    }
+  .container {
+    flex-direction: column;
+    gap: 20px;
+  }
 
-    aside {
-        width: 100%;
-        height: auto;
-        padding: 10px;
-    }
+  aside {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+  }
 
-    .button-container {
-        grid-template-columns: 1fr; /* Una sola columna en pantallas pequeñas */
-    }
+  .button-container {
+    grid-template-columns: 1fr; /* Una sola columna en pantallas pequeñas */
+  }
 }
 
 /* Contenedor de botones */
 .button-container {
-    display: flex;
-    flex-direction: column; /* Coloca los botones en una columna */
-    gap: 1rem; /* Espaciado entre los botones */
-    width: 100%; /* Asegura que los botones ocupen el ancho disponible */
-    align-items: center; /* Centra los botones horizontalmente */
+  display: flex;
+  flex-direction: column; /* Coloca los botones en una columna */
+  gap: 1rem; /* Espaciado entre los botones */
+  width: 100%; /* Asegura que los botones ocupen el ancho disponible */
+  align-items: center; /* Centra los botones horizontalmente */
 }
 
 .button-container button {
-    background-color: #00FF7F; /* Color de fondo del botón */
-    color: #fff; /* Color del texto */
-    border: none; /* Sin borde */
-    border-radius: 8px; /* Bordes redondeados */
-    padding: 10px 20px; /* Espaciado interno */
-    font-size: 16px; /* Tamaño del texto */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-    transition: background-color 0.3s ease; /* Transición para hover */
-    width: 60%; /* Ajustar el ancho del botón */
-    max-width: 300px; /* Ancho máximo */
-    text-align: center;
+  background-color: #00ff7f; /* Color de fondo del botón */
+  color: #fff; /* Color del texto */
+  border: none; /* Sin borde */
+  border-radius: 8px; /* Bordes redondeados */
+  padding: 10px 20px; /* Espaciado interno */
+  font-size: 16px; /* Tamaño del texto */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  transition: background-color 0.3s ease; /* Transición para hover */
+  width: 60%; /* Ajustar el ancho del botón */
+  max-width: 300px; /* Ancho máximo */
+  text-align: center;
 }
 
 .button-container button:hover {
-    background-color: #68fcb2; /* Cambio de color al pasar el cursor */
+  background-color: #68fcb2; /* Cambio de color al pasar el cursor */
 }
 
 .button-container button:active {
-    transform: scale(0.95); /* Efecto de clic */
+  transform: scale(0.95); /* Efecto de clic */
 }
