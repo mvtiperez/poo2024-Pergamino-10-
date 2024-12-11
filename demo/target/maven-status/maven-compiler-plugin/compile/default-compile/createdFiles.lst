@@ -1,0 +1,17 @@
+com\example\demo\DemoApplication.class
+com\example\demo\repositories\UserRepository.class
+com\example\demo\DTO\UserDto.class
+com\example\demo\Entitie\Genre.class
+com\example\demo\services\PlayListService.class
+com\example\demo\services\SongService.class
+com\example\demo\services\UserService.class
+com\example\demo\security\SecurityConfig.class
+com\example\demo\Entitie\User.class
+com\example\demo\Entitie\MusicArtistUser.class
+com\example\demo\Entitie\Song$SongBuilder.class
+com\example\demo\Entitie\Song.class
+com\example\demo\Entitie\PlayList$PlayListBuilder.class
+com\example\demo\Entitie\MusicEnthusiastUser.class
+com\example\demo\Entitie\PlayList.class
+com\example\demo\repositories\PlayListRepository.class
+com\example\demo\repositories\SongRepository.class

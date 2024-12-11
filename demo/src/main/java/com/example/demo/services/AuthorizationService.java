@@ -1,5 +1,5 @@
 package com.example.demo.services;
-import com.example.demo.entities.User;
+import com.example.demo.Entitie.User;
 public interface AuthorizationService {
     User authorize(String token) throws Exception;
     void verify(String token);

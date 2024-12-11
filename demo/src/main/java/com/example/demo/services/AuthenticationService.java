@@ -1,7 +1,9 @@
 package com.example.demo.services;
 
+import java.util.Map;
+
 import com.example.demo.DTO.AuthenticationRequestDTO;
 
 public interface AuthenticationService {
-    String authenticate(AuthenticationRequestDTO requestDTO) throws Exception;
+    Map authenticate(AuthenticationRequestDTO requestDTO) throws Exception;
 }

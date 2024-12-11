@@ -9,8 +9,6 @@ import lombok.AllArgsConstructor;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-// Clase que representa el objeto que se recibe en el body de la petición de
-// agregar canción
 public class SongRequestDto {
     private String name;
     private String genre;

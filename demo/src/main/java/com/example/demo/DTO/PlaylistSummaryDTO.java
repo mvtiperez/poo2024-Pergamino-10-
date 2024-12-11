@@ -9,7 +9,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-// Clase que representa el objeto que se recibe en el body de la petición de resumen de playlist
 public class PlaylistSummaryDTO {
     private String name;
     private long songCount;

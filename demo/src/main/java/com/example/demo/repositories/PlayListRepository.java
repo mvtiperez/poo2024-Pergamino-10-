@@ -8,7 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.example.demo.DTO.PlaylistSummaryDTO;
-import com.example.demo.entities.PlayList;
+import com.example.demo.Entitie.PlayList;
+
 
 @Repository
 public interface PlayListRepository extends JpaRepository<PlayList, Long> {
@@ -17,6 +18,6 @@ public interface PlayListRepository extends JpaRepository<PlayList, Long> {
            "LEFT JOIN p.songs s " +
            "GROUP BY p.id, p.name")
     List<PlaylistSummaryDTO> findPlaylistsWithSongCount();
-
+    List<PlayList> findByNameContainingIgnoreCase(String name); // Método para buscar Playlist por nombre
     List<PlayList> findByOwner_id(Long owner_id);
 }

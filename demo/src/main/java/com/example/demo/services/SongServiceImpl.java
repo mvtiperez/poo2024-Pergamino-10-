@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.DTO.SongRequestDto;
 import com.example.demo.DTO.SongResponseDTO;
-import com.example.demo.entities.Genre;
-import com.example.demo.entities.MusicArtistUser;
-import com.example.demo.entities.Song;
+import com.example.demo.Entitie.Genre;
+import com.example.demo.Entitie.MusicArtistUser;
+import com.example.demo.Entitie.Song;
 import com.example.demo.exceptions.ResourceNotFoundException;
 import com.example.demo.repositories.SongRepository;
 import com.example.demo.repositories.UserRepository;
@@ -107,6 +107,13 @@ public class SongServiceImpl implements SongService {
         return songs.stream()
                 .map(song -> modelMapper.map(song, SongResponseDTO.class))
                 .collect(Collectors.toList());
+    }
+    @Override
+    public List<SongResponseDTO> searchSongsByName(String name) {
+        List<Song> songs = songRepository.findByNameContainingIgnoreCase(name);
+        return songs.stream()
+            .map(song -> modelMapper.map(song, SongResponseDTO.class))
+            .collect(Collectors.toList());
     }
 
 }
